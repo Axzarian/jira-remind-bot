@@ -32,6 +32,7 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           source: build/libs/jira-remind-bot.jar
           target: /home/ubuntu/jira-bot
+          strip_components: '2'
 
       - name: Restart system service
         uses: appleboy/ssh-action@v1.0.0
