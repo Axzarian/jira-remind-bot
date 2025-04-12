@@ -32,8 +32,8 @@ public class DailyNotifier {
         telegramSender.sendMarkDown(GROUP_CHAT_ID, MESSAGE);
     }
 
+    @Scheduled(cron = "0 0 * * * *", zone = "Asia/Almaty")
     public void sendDailyNotification() {
-//        final var file = new File("/Users/alexey/Downloads/image1.png");
         final var file = new File("/home/ubuntu/jira-bot/img/image1.png");
         telegramSender.sendPhotoFromFile(GROUP_CHAT_ID, file, MESSAGE);
     }

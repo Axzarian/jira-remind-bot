@@ -1,7 +1,6 @@
 package org.axzarian.jiraremindbot.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.axzarian.jiraremindbot.schedule.DailyNotifier;
 import org.axzarian.jiraremindbot.sender.TelegramSender;
 import org.axzarian.jiraremindbot.stopwatch.Stopwatch;
 import org.springframework.http.ResponseEntity;
@@ -17,40 +16,37 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class TelegramWebhookController {
 
     private final TelegramSender telegramSender;
-    private final Stopwatch stopwatch;
-    private final DailyNotifier dailyNotifier;
+    private final Stopwatch      stopwatch;
 
     @PostMapping
     public ResponseEntity<String> onUpdateReceived(@RequestBody Update update) {
+
         if (update.hasMessage() && update.getMessage().hasText()) {
-            String text = update.getMessage().getText();
-            Long chatId = update.getMessage().getChatId();
+            final var text   = update.getMessage().getText();
+            final var chatId = update.getMessage().getChatId();
 
             if ("/start".equals(text)) {
-//                telegramSender.sendWithButtons(chatId.toString(), formatUptime());
-                dailyNotifier.sendDailyNotification();
+                telegramSender.sendWithButtons(chatId.toString(), formatUptime());
             } else {
                 telegramSender.sendMessage(chatId.toString(), "Неизвестная команда.");
             }
         }
 
         if (update.hasCallbackQuery()) {
-            String    data      = update.getCallbackQuery().getData();
-            Long      chatId    = update.getCallbackQuery().getMessage().getChatId();
+            final var data      = update.getCallbackQuery().getData();
+            final var chatId    = update.getCallbackQuery().getMessage().getChatId();
             final var messageId = update.getCallbackQuery().getMessage().getMessageId();
 
-//            telegramSender.deleteMessage(chatId.toString(), messageId);
-
             if ("refresh".equals(data)) {
-//                telegramSender.sendWithButtons(chatId.toString(), formatUptime());
                 telegramSender.editMessage(chatId.toString(), messageId, formatUptime());
             } else if ("reset".equals(data)) {
-                stopwatch.reset();
-                telegramSender.sendWithButtons(chatId.toString(), "Таймер сброшен.\n\n" + formatUptime());
+//                stopwatch.reset();
+                telegramSender.sendWithButtons(
+                    chatId.toString(),
+                    "Я передумал, ты не можешь сбросить таймер.\n\n" + formatUptime()
+                );
             }
         }
-
-        System.out.println(update);
 
         return ResponseEntity.ok("OK");
     }
@@ -58,8 +54,8 @@ public class TelegramWebhookController {
     private String formatUptime() {
         long totalSeconds = stopwatch.getTime();
 
-        long days = totalSeconds / (60 * 60 * 24);
-        long hours = (totalSeconds / (60 * 60)) % 24;
+        long days    = totalSeconds / (60 * 60 * 24);
+        long hours   = (totalSeconds / (60 * 60)) % 24;
         long minutes = (totalSeconds / 60) % 60;
         long seconds = totalSeconds % 60;
 
