@@ -1,6 +1,7 @@
 package org.axzarian.jiraremindbot.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.axzarian.jiraremindbot.schedule.DailyNotifier;
 import org.axzarian.jiraremindbot.sender.TelegramSender;
 import org.axzarian.jiraremindbot.stopwatch.Stopwatch;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class TelegramWebhookController {
 
     private final TelegramSender telegramSender;
     private final Stopwatch      stopwatch;
+    private final DailyNotifier dailyNotifier;
 
     @PostMapping
     public ResponseEntity<String> onUpdateReceived(@RequestBody Update update) {
@@ -26,7 +28,8 @@ public class TelegramWebhookController {
             final var chatId = update.getMessage().getChatId();
 
             if ("/start".equals(text)) {
-                telegramSender.sendWithButtons(chatId.toString(), formatUptime());
+//                telegramSender.sendWithButtons(chatId.toString(), formatUptime());
+                dailyNotifier.sendDailyNotification();
             } else {
                 telegramSender.sendMessage(chatId.toString(), "Неизвестная команда.");
             }

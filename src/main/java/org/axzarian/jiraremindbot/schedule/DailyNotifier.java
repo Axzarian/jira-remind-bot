@@ -1,8 +1,8 @@
 package org.axzarian.jiraremindbot.schedule;
 
-import java.io.File;
 import lombok.RequiredArgsConstructor;
 import org.axzarian.jiraremindbot.sender.TelegramSender;
+import org.axzarian.jiraremindbot.service.ReminderStorageService;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -10,32 +10,25 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DailyNotifier {
 
-    private final TelegramSender telegramSender;
+    private final TelegramSender         telegramSender;
+    private final ReminderStorageService reminderStorageService;
 
     private static final String GROUP_CHAT_ID = "-4725997680";
-
-    private static final String MESSAGE = """
-                                          *😱 ЕМААААААА\\!*
-                                          
-                                          Через *15 минут* — дейлик\\!
-                                          
-                                          Подвинь тикеты, обнови статусы, не зли *уважаемых людей* 🧑‍💼👀
-                                          
-                                          🛠️ Jira 👇
-                                          
-                                          [🔗 Доска](https://google.com)
-                                          """;
 
 
     @Scheduled(cron = "0 25 12 * * *", zone = "Asia/Almaty")
     public void sendDailyNotificationScheduled() {
-        telegramSender.sendMarkDown(GROUP_CHAT_ID, MESSAGE);
+        final var message = reminderStorageService.getMessage();
+        telegramSender.sendMarkDown(GROUP_CHAT_ID, message);
     }
 
     @Scheduled(cron = "0 0 * * * *", zone = "Asia/Almaty")
     public void sendDailyNotification() {
-        final var file = new File("/home/ubuntu/jira-bot/img/image1.png");
-        telegramSender.sendPhotoFromFile(GROUP_CHAT_ID, file, MESSAGE);
+
+        final var message = reminderStorageService.getMessage();
+        final var image   = reminderStorageService.getImage();
+
+        telegramSender.sendPhotoFromFile(GROUP_CHAT_ID, image, message);
     }
 
 }

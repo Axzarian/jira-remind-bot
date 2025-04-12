@@ -64,8 +64,8 @@ public class TelegramSender {
 
         Map<String, Object> keyboard = Map.of(
             "inline_keyboard", List.of(
-                List.of(Map.of("text", "⏱ Обновить", "callback_data", "refresh")),
-                List.of(Map.of("text", "🔁 Сбросить", "callback_data", "reset"))
+                List.of(Map.of("text", "⏱ Обновить", "callback_data", "refresh"))
+//                List.of(Map.of("text", "🔁 Сбросить", "callback_data", "reset"))
             )
         );
 
