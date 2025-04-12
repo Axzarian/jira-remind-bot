@@ -2,7 +2,7 @@ name: Build and Deploy Jira Remind Bot
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
 
 jobs:
   deploy:
