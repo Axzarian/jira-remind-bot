@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: jira-remind-bot
+
+server:
+  port: 8080
