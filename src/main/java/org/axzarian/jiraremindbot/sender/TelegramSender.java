@@ -1,7 +1,6 @@
 package org.axzarian.jiraremindbot.sender;
 
 import java.io.File;
-import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -28,67 +27,6 @@ public class TelegramSender {
         Map<String, String> payload = Map.of("chat_id", chatId, "text", text);
 
         restTemplate.postForObject(url, payload, String.class);
-    }
-
-    public void sendWithButtons(String chatId, String text) {
-        final var url = String.format("https://api.telegram.org/bot%s/sendMessage", botToken);
-
-        Map<String, Object> keyboard = Map.of(
-            "inline_keyboard", List.of(
-                List.of(Map.of("text", "⏱ Обновить", "callback_data", "refresh"))
-//                List.of(Map.of("text", "\uD83D\uDD01 Сбросить", "callback_data", "reset"))
-            )
-        );
-
-        Map<String, Object> payload = Map.of(
-            "chat_id", chatId,
-            "text", text,
-            "reply_markup", keyboard
-        );
-
-        restTemplate.postForObject(url, payload, String.class);
-    }
-
-    public void deleteMessage(String chatId, Integer messageId) {
-        final var url = String.format("https://api.telegram.org/bot%s/deleteMessage", botToken);
-
-        Map<String, Object> payload = Map.of(
-            "chat_id", chatId,
-            "message_id", messageId
-        );
-        restTemplate.postForObject(url, payload, String.class);
-    }
-
-    public void editMessage(String chatId, Integer messageId, String newText) {
-        final var url = String.format("https://api.telegram.org/bot%s/editMessageText", botToken);
-
-        Map<String, Object> keyboard = Map.of(
-            "inline_keyboard", List.of(
-                List.of(Map.of("text", "⏱ Обновить", "callback_data", "refresh"))
-//                List.of(Map.of("text", "🔁 Сбросить", "callback_data", "reset"))
-            )
-        );
-
-        Map<String, Object> payload = Map.of(
-            "chat_id", chatId,
-            "message_id", messageId,
-            "text", newText,
-            "reply_markup", keyboard
-        );
-
-        restTemplate.postForObject(url, payload, String.class);
-    }
-
-    public void sendMarkDown(String chatId, String text) {
-        final var url = String.format("https://api.telegram.org/bot%s/sendMessage", botToken);
-
-        Map<String, Object> keyboard = Map.of(
-            "chat_id", chatId,
-            "text", text,
-            "parse_mode", "MarkdownV2"
-        );
-
-        restTemplate.postForObject(url, keyboard, String.class);
     }
 
     public void sendPhotoFromFile(String chatId, File file, String caption) {

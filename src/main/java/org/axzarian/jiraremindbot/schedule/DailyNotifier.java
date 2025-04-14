@@ -13,22 +13,17 @@ public class DailyNotifier {
     private final TelegramSender         telegramSender;
     private final ReminderStorageService reminderStorageService;
 
-    private static final String GROUP_CHAT_ID = "-4725997680";
+    private static final String TEST_GROUP_CHAT_ID = "-4725997680";
+    private static final String JIRA_REMIND_BOT_CHAT_ID = "";
 
 
-    @Scheduled(cron = "0 25 12 * * *", zone = "Asia/Almaty")
-    public void sendDailyNotificationScheduled() {
-        final var message = reminderStorageService.getMessage();
-        telegramSender.sendMarkDown(GROUP_CHAT_ID, message);
-    }
-
-    @Scheduled(cron = "0 0 * * * *", zone = "Asia/Almaty")
+    @Scheduled(cron = "0 15 10 * * MON-FRI", zone = "Asia/Almaty")
     public void sendDailyNotification() {
 
         final var message = reminderStorageService.getMessage();
         final var image   = reminderStorageService.getImage();
 
-        telegramSender.sendPhotoFromFile(GROUP_CHAT_ID, image, message);
+        telegramSender.sendPhotoFromFile(TEST_GROUP_CHAT_ID, image, message);
     }
 
 }

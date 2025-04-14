@@ -20,8 +20,9 @@ public class ReminderStorageServiceImpl implements ReminderStorageService {
                                              
                                              🛠️ Jira 👇
                                              
-                                             [🔗 Доска](https://google.com)
+                                             [🔗 Доска](https://jira-obl.hq.bc/secure/RapidBoard.jspa?rapidView=13&projectKey=KSSN)
                                              """;
+
     private static final Path   IMAGE_PATH = Paths.get("/home/ubuntu/jira-bot/img/image1.png");
 
 
