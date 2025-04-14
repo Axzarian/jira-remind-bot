@@ -25,7 +25,7 @@ public class TelegramWebhookController {
             final var text   = update.getMessage().getText();
 
             if ("/start".equals(text)) {
-                log.info("Incoming update: {}", update);
+                log.info("Incoming update: {}", update.getMessage().getChatId());
             }
 
             if ("/reminder".equals(text)) {
