@@ -13,7 +13,7 @@ public class DailyNotifier {
     private final TelegramSender         telegramSender;
     private final ReminderStorageService reminderStorageService;
 
-    private static final String TEST_GROUP_CHAT_ID = "";
+    private static final String TEST_GROUP_CHAT_ID = "-1002611733910";
     private static final String JIRA_REMIND_BOT_CHAT_ID = "";
 
 
