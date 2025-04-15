@@ -12,13 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 public class ReminderStorageServiceImpl implements ReminderStorageService {
 
     private static       String MESSAGE    = """
-                                             *😱 ЕМААААААА\\!*
+                                             *😱 Тик-так тик-так\\!*
                                              
-                                             Через *5 минут* — дейлик\\!
+                                             Через *10 минут* — дейлик\\!
                                              
-                                             Где\\: *Конкорд 301*
+                                             Где\\: *Каблан 3/3*
                                              
-                                             Подвинь тикеты, обнови статусы, не зли *уважаемых людей* 🧑‍💼👀
+                                             P.S. Они никогда больше не забудут про тикеты 🧑‍💼👀
                                              
                                              [🔗 Jira](https://jira-obl.hq.bc/secure/RapidBoard.jspa?rapidView=13&projectKey=KSSN)
                                              """;
