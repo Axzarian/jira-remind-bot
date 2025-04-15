@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ReminderStorageServiceImpl implements ReminderStorageService {
 
     private static       String MESSAGE    = """
-                                             *😱 Тик-так тик-так\\!*
+                                             *😱 Тик\\-так тик\\-так\\!*
                                              
                                              Через *10 минут* — дейлик\\!
                                              
