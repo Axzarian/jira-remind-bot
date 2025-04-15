@@ -16,6 +16,8 @@ public class ReminderStorageServiceImpl implements ReminderStorageService {
                                              
                                              Через *10 минут* — дейлик\\!
                                              
+                                             Конкорд 301
+                                             
                                              Подвинь тикеты, обнови статусы, не зли *уважаемых людей* 🧑‍💼👀
                                              
                                              [🔗 Jira](https://jira-obl.hq.bc/secure/RapidBoard.jspa?rapidView=13&projectKey=KSSN)
