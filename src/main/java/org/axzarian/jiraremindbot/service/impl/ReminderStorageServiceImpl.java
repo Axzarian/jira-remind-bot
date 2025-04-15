@@ -18,7 +18,7 @@ public class ReminderStorageServiceImpl implements ReminderStorageService {
                                              
                                              Где\\: *Каблан 3/3*
                                              
-                                             P.S. Они никогда больше не забудут про тикеты 🧑‍💼👀
+                                             P\\.S\\. Они никогда больше не забудут про тикеты 🧑‍💼👀
                                              
                                              [🔗 Jira](https://jira-obl.hq.bc/secure/RapidBoard.jspa?rapidView=13&projectKey=KSSN)
                                              """;
