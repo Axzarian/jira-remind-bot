@@ -14,13 +14,11 @@ public class ReminderStorageServiceImpl implements ReminderStorageService {
     private static       String MESSAGE    = """
                                              *😱 ЕМААААААА\\!*
                                              
-                                             Через *15 минут* — дейлик\\!
+                                             Через *10 минут* — дейлик\\!
                                              
                                              Подвинь тикеты, обнови статусы, не зли *уважаемых людей* 🧑‍💼👀
                                              
-                                             🛠️ Jira 👇
-                                             
-                                             [🔗 Доска](https://jira-obl.hq.bc/secure/RapidBoard.jspa?rapidView=13&projectKey=KSSN)
+                                             [🔗 Jira](https://jira-obl.hq.bc/secure/RapidBoard.jspa?rapidView=13&projectKey=KSSN)
                                              """;
 
     private static final Path   IMAGE_PATH = Paths.get("/home/ubuntu/jira-bot/img/image1.png");
