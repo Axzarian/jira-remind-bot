@@ -27,7 +27,7 @@ public class TelegramWebhookController {
         if (update.hasMessage() && update.getMessage().hasText()) {
             final var text   = update.getMessage().getText();
 
-            if ("/scan biological species".equals(text)) {
+            if ("/scan_biological_species".equals(text)) {
                 log.info("Incoming update: {}", update.getMessage().getChatId());
             }
 
