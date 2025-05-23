@@ -17,7 +17,7 @@ public class DailyNotifier {
     private static final String JIRA_REMIND_BOT_CHAT_ID = "-1002620361490";
 
 
-    @Scheduled(cron = "0 55 10 * * FRI", zone = "Asia/Almaty")
+    @Scheduled(cron = "0 20 10 * * TUE-FRI", zone = "Asia/Almaty")
     public void sendDailyNotification() {
 
         final var message = reminderStorageService.getMessage();
